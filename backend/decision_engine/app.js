@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
 const bodyParser  = require('body-parser');
-const port = 3002;
+const port = 3000;
 
 // Use middleware to parse JSON requests
 app.use(bodyParser.json());
+
+/* Since this is a third party service, keeping it as minimal as possible */
 
 app.post('/api/makeDecision', (req, res) => {
   try {

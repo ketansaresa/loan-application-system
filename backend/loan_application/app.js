@@ -12,9 +12,7 @@ const port = process.env.PORT || 3000;
 
 // Use middleware to parse JSON requests
 app.use(bodyParser.json());
-app.use(cors({
-  origin: '*'
-}));
+app.use(cors());
 
 // Use your defined routes
 app.use('/api', routes);

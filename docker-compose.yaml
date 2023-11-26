@@ -7,8 +7,16 @@ services:
       - ./data:/data/db
     ports:
       - "27017:27017"
-    networks:
-      - mynet
+  accounting_provider:
+    container_name: accounting_provider
+    build: ./backend/accounting_provider
+    ports:
+      - "3001:3000"
+  decision_engine:
+    container_name: decision_engine
+    build: ./backend/decision_engine
+    ports:
+      - "3002:3000"
   loan_application:
     container_name: loan_application
     build: ./backend/loan_application
@@ -16,29 +24,8 @@ services:
       - "3000:3000"
     depends_on:
       - mongodb
-    networks:
-      - mynet
-  accounting_provider:
-    container_name: accounting_provider
-    build: ./backend/accounting_provider
-    ports:
-      - "3001:3001"
-    networks:
-      - mynet
-  decision_engine:
-    container_name: decision_engine
-    build: ./backend/decision_engine
-    ports:
-      - "3002:3002"
-    networks:
-      - mynet
   frontend:
     container_name: frontend
     build: ./frontend
     ports:
       - "3003:3003"
-networks:
-  mynet:
-    driver: bridge
-    ipam:
-      driver: default

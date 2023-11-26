@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 3001;
+const port = 3000;
 const providerJson = require('./data/providers.json');
 const balanceSheetJson = require('./data/balanceSheet.json');
+
+/* Since this is a third party service, keeping it as minimal as possible */
 
 /* List of providers route */
 app.get('/api/providers', (req, res) => {
